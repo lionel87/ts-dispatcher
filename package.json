@@ -1,6 +1,6 @@
 {
   "name": "ts-dispatcher",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Type-safe Event Dispatcher implementation.",
   "type": "module",
   "main": "cjs/index.js",
