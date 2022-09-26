@@ -1,0 +1,47 @@
+{
+  "name": "ts-dispatcher",
+  "version": "0.1.0",
+  "description": "Type-safe Event Dispatcher implementation.",
+  "type": "module",
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
+  "types": "esm/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./cjs/index.js",
+      "default": "./esm/index.js"
+    }
+  },
+  "scripts": {
+    "prepack": "npm run build",
+    "clean": "rimraf esm cjs",
+    "build": "npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc",
+    "watch:esm": "tsc --watch",
+    "build:cjs": "tsc --outDir cjs --module commonjs && echo { \"type\": \"commonjs\" }>cjs/package.json",
+    "watch:cjs": "npm run build:cjs && tsc --outDir cjs --module commonjs --watch",
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lionel87/ts-dispatcher.git"
+  },
+  "keywords": [
+    "type-safe",
+    "types",
+    "interface",
+    "typescript",
+    "event",
+    "dispatcher"
+  ],
+  "author": "László Bulik <laszlo.bulik@ksh.hu> (http://www.ksh.hu/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lionel87/ts-dispatcher/issues"
+  },
+  "homepage": "https://github.com/lionel87/ts-dispatcher#readme",
+  "devDependencies": {
+    "rimraf": "^3.0.2",
+    "typescript": "^4.7.4"
+  }
+}
