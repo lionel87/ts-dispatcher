@@ -1,8 +1,8 @@
 # Type-Safe Event Dispatcher
 
-This is simple event dispatcher which implements the mediator pattern, where a well-known centralised object is available to send and recieve messages.
+This is a simple event dispatcher which implements the mediator pattern, where a well-known centralised object is available to send and recieve messages.
 
-Messages sent (with `.dispatch()`) have an assigned event type (or event key) which can be any type (Symbol, string, number, objects, functions etc.).
+Messages sent (with `.dispatch()`) have an assigned event type (or event key) which can be any type (Symbol, string, object, function etc.).
 Recievers can subscribe (with `.addListener()`) to these specifict event types.
 
 ## WHY?
@@ -10,7 +10,7 @@ Recievers can subscribe (with `.addListener()`) to these specifict event types.
 There are too many Event Dispatcher implementations on the net. Yet here I am making another one.
 To be honest a fully functional event dispatcher can be made with 3 lines of code.
 What this package additionally provides are a set of type declarations attached to the dispatcher class.
-With these type declarations your IDE will provide code completion for all possible event.
+With these type declarations your IDE will provide code completion for all possible events.
 
 ## Usage
 
@@ -33,6 +33,7 @@ dispatcher.dispatch('event-key-2', 'abc'); // OK.
 dispatcher.dispatch('event-key-2', 'abc', 123); // type error: unknown third parameter (number).
 
 dispatcher.addListener('event-key-3', (param1) => console.log(param1)); // OK.
+dispatcher.addListener('event-key-3', (param1) => console.log(JSON.parse(param1))); // type error: param1 is not a string (JSON.parse expects a string).
 dispatcher.addListener('event-key-3', (param1, param2) => console.log(param1)); // type error: unknown argument param2.
 
 dispatcher.addListener('event-key-4', () => console.log(4)); // type error: unknown 'event-key-4' argument.
